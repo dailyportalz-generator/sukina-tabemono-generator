@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { parse } from 'querystring'
 import Result from './components/Result.vue'
 import InputBasic from './components/InputBasic.vue'
 import InputFood from './components/InputFood.vue'
@@ -40,6 +41,31 @@ export default {
         food: 1,
         chara: 1,
       }
+    }
+  },
+  mounted() {
+    const params = parse(location.search.replace('?', ''))
+    const isValid = ['name', 'sex', 'figure', 'food', 'chara'].every((val) => {
+      if (!params[val]) {
+        return false
+      }
+      if (val != 'name' && parseInt(params[val]) < 1) {
+        return false
+      }
+      return true
+    })
+    if (isValid) {
+      const data = {
+        name: params.name,
+        title: parseInt(params.title),
+        q1: parseInt(params.q1),
+        sex: parseInt(params.sex),
+        figure: parseInt(params.figure),
+        food: parseInt(params.food),
+        chara: parseInt(params.chara)
+      }
+      this.data = data
+      this.step = 3
     }
   },
   methods: {

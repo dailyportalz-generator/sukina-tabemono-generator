@@ -11,8 +11,7 @@
     <p class="share" v-if="step === 3">
       この内容は以下のURLで呼び出すことができます<br>
       {{shareUrl}}<br>
-      ・このURLは2週間有効です。それ以降は消えます<br>
-      ・2週間以内でも都合により消すことがあります。ご了承ください。<br>
+      ・このURLは都合により消すことがあります。ご了承ください。<br>
       <br>
       コピペ用 <input type="text" name="url" size="50" :value="shareUrl" readonly="readonly" class="edit" id="url" onfocus="this.select()">
     </p>
@@ -270,12 +269,9 @@ export default {
     },
     shareUrl() {
       const shareData = {
-        ...this.data.target,
         ...this.data,
-        target: null,
         share: 1
       }
-      delete shareData.target
       return `https://dailyportalz.jp/p/generator/20190615tabemono?${stringify(
         shareData
       )}`
