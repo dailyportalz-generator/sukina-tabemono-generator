@@ -9,10 +9,6 @@
     <p class="img" v-if="step >= 2"><img :src="foodImg"></p>
     <p class="img" v-if="step === 3"><img :src="charaImg"></p>
     <p class="share" v-if="step === 3">
-      この内容は以下のURLで呼び出すことができます<br>
-      {{shareUrl}}<br>
-      ・このURLは都合により消すことがあります。ご了承ください。<br>
-      <br>
       コピペ用 <input type="text" name="url" size="50" :value="shareUrl" readonly="readonly" class="edit" id="url" onfocus="this.select()">
     </p>
   </div>
